@@ -35,6 +35,120 @@
                 }
               ]
             }
+        },
+
+        "PublicSubnetA": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/24",
+              "AvailabilityZone": "us-east-2a",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Public subnet A"
+                }
+              ]
+            }
+        },
+        "PublicSubnetB": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.1.0/24",
+              "AvailabilityZone": "us-east-2b",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Public subnet B"
+                }
+              ]
+            }
+        },
+        "PublicSubnetC": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.2.0/24",
+              "AvailabilityZone": "us-east-2c",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Public subnet C"
+                }
+              ]
+            }
+        },
+
+        "PrivateSubnetA": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.100.0/24",
+              "AvailabilityZone": "us-east-2a",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Private subnet A"
+                }
+              ]
+            }
+        },
+        "PrivateSubnetB": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.101.0/24",
+              "AvailabilityZone": "us-east-2b",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Private subnet B"
+                }
+              ]
+            }
+        },
+        "PrivateSubnetC": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "CidrBlock": "10.0.102.0/24",
+              "AvailabilityZone": "us-east-2c",
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Private subnet C"
+                }
+              ]
+            }
+        },
+
+
+        "InternetGateway": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+            }
+        },
+        "DHCPOptions": {
+            "Type": "AWS::EC2::DHCPOptions",
+            "Properties": {
+              "DomainName": "us-east-2.compute.internal",
+              "DomainNameServers": [
+                "AmazonProvidedDNS"
+              ]
+            }
         }
-    }     
+             
 }
