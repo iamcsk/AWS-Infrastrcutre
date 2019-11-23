@@ -178,6 +178,397 @@
                 }
               ]
             }
+        },
+
+
+        "PrivateRouteTable": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+              "VpcId": {
+                "Ref": "VPC"
+              }
+            }
+          },
+          "PublicRouteTable": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+              "VpcId": {
+                "Ref": "VPC"
+              }
+            }
+        },
+
+
+        "PublicEgressACL1": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "100",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL2": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "200",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL3": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "300",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL4": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "400",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL5": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "500",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL6": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "600",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicEgressACL7": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": { "Ref" :  "10.0.0.0/16" },
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "700",
+              "PortRange": {
+                "From": "22",
+                "To": "22"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+
+
+
+        "PublicIngressACL1": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": { "Ref" :  "EC2InstanceConnectIP" },
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "100",
+              "PortRange": {
+                "From": "22",
+                "To": "22"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicIngressACL2": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "200",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicIngressACL3": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "300",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicIngressACL4": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "400",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+        "PublicIngressACL5": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "500",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PublicNetworkACL"
+              }
+            }
+        },
+
+
+        "PrivateEgressACL1": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "100",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateEgressACL2": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "200",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateEgressACL3": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "300",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateEgressACL4": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "400",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateEgressACL5": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Egress": "true",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "500",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+
+
+        "PrivateIngressACL1": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/16",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "100",
+              "PortRange": {
+                "From": "80",
+                "To": "80"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateIngressACL2": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/16",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "200",
+              "PortRange": {
+                "From": "443",
+                "To": "443"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateIngressACL3": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/16",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "300",
+              "PortRange": {
+                "From": "22",
+                "To": "22"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateIngressACL4": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "0.0.0.0/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "400",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
+        },
+        "PrivateIngressACL5": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+              "CidrBlock": "::/0",
+              "Protocol": "6",
+              "RuleAction": "allow",
+              "RuleNumber": "500",
+              "PortRange": {
+                "From": "1024",
+                "To": "65535"
+              },
+              "NetworkAclId": {
+                "Ref": "PrivateNetworkACL"
+              }
+            }
         }
     }
              
