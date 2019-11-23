@@ -1,0 +1,40 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+
+    "Parameters" : {
+        "KeyName" : {
+            "Description" : "EC2 instance ssh key",
+            "Type" : "AWS::EC2::KeyPair::KeyName"
+        },
+        "InstanceType" : {
+            "Description" : "EC2 instance type",
+            "Type" : "String",
+            "Default" : "t2.micro",
+            "AllowedValues" : [ "t2.micro", "t2.medium", "m5.xlarge","m4.large"]
+        },
+        "EC2InstanceConnectIP": {
+            "Description": "IP address of EC2 Instance Connect service.",
+            "Type": "String",
+            "Default": "3.16.146.0/29"
+        }
+    },
+
+    "Resources": {
+        
+        "VPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/16",
+              "InstanceTenancy": "default",
+              "EnableDnsSupport": "true",
+              "EnableDnsHostnames": "true",
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Kohia"
+                }
+              ]
+            }
+        }
+    }     
+}
