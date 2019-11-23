@@ -149,6 +149,36 @@
                 "AmazonProvidedDNS"
               ]
             }
+        },
+
+        "PublicNetworkACL": {
+            "Type": "AWS::EC2::NetworkAcl",
+            "Properties": {
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Public Network ACL"
+                }
+              ]
+            }
+        },
+        "PrivateNetworkACL": {
+            "Type": "AWS::EC2::NetworkAcl",
+            "Properties": {
+              "VpcId": {
+                "Ref": "VPC"
+              },
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "Private Network ACL"
+                }
+              ]
+            }
         }
+    }
              
 }
